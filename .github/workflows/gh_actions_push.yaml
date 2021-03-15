@@ -17,6 +17,19 @@ on:
 jobs:
   build-push:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.default == false }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [linux/amd64]
+        default: [true]
+        include:
+          - platform: linux/arm64
+            default: false
+          - platform: linux/ppc64le
+            default: false
+          - platform: linux/s390x
+            default: false
     steps:
     - name: Checkout che-machine-exec source code
       uses: actions/checkout@v2
@@ -30,16 +43,12 @@ jobs:
         username: ${{ secrets.QUAY_USERNAME }}
         password: ${{ secrets.QUAY_PASSWORD }}
         registry: quay.io
-    - id: vars
-      shell: bash
-      run: |
-        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-    - name: Build and push both short SHA tag and nightly tag
+    - name: Check docker build
       uses: docker/build-push-action@v2
       with:
         file: build/dockerfiles/Dockerfile
-        platforms: linux/amd64,linux/ppc64le,linux/s390x
+        platforms: ${{ matrix.platform }}
         push: true
         tags: |
-          quay.io/eclipse/che-machine-exec:nightly
-          quay.io/eclipse/che-machine-exec:${{ steps.vars.outputs.sha_short }}
+          quay.io/flacatus/che-machine-exec:nightly
+          quay.io/flacatus/che-machine-exec:${{ steps.vars.outputs.sha_short }}
