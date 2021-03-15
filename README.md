@@ -1,4 +1,4 @@
-[![Nightly Build](https://github.com/flacatus/che-machine-exec/workflows/CI%20aBuild/badge.svg)](https://github.com/flacatus/che-machine-exec/actions)
+[![Nightly Build](https://github.com/flacatus/che-machine-exec/workflows/CI%20Build/badge.svg)](https://github.com/flacatus/che-machine-exec/actions)
 [![Master Build Status](https://github.com/flacatus/che-machine-exec/actions/workflows/gh_actions_pr.yaml/badge.svg)](https://github.com/eclipse/che-machine-exec)
 [![Release Build Status](https://ci.centos.org/buildStatus/icon?subject=release&job=devtools-che-machine-exec-release/)](https://ci.centos.org/job/devtools-che-machine-exec-release/)
 [![Codecov](https://img.shields.io/codecov/c/github/eclipse/che-machine-exec)](https://github.com/eclipse/che-machine-exec/)
