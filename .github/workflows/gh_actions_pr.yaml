@@ -26,8 +26,6 @@ jobs:
             default: false
           - platform: linux/ppc64le
             default: false
-          - platform: linux/s390x
-            default: false
     steps:
     - name: Checkout che-machine-exec source code
       uses: actions/checkout@v2
